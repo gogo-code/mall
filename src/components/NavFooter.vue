@@ -1,4 +1,4 @@
-<template> <div>footer</div></template>
+<template> <div></div></template>
 
 <script>
 export default {
