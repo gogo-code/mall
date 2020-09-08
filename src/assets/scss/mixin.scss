@@ -12,3 +12,10 @@
   background-size: $size;
  
 }
+@mixin position($pos,$top:0,$left:0,$w:100%,$h:100%){
+  position: $pos;
+  top:$top;
+  left:$left;
+  width: $w;
+  height: $h;
+}

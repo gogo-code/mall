@@ -4,6 +4,7 @@ import VueAxios from 'vue-axios' // 把axios挂载到vue实例
 import App from './App.vue'
 import router from './router'
 
+
 axios.defaults.baseURL = '/api'
 axios.defaults.timeout = 8000
 //接口信息拦截

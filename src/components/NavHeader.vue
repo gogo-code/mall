@@ -3,7 +3,7 @@
     <div class="nav-topbar">
       <div class="container">
         <div class="topbar-menu">
-          <a href="javascripte:;">小米商城</a>
+          <a href="javascripte:;">乐享商城</a>
           <a href="javascripte:;">MUI</a>
           <a href="javascripte:;">云服务</a>
           <a href="javascripte:;">协议规则</a>
@@ -241,7 +241,9 @@ export default {
         width: 110px;
         background-color: #f60;
         text-align: center;
+        margin-right: 0;
         color: #fff;
+        
         .icon-cart {
           @include bgImg(16px, 12px, '/imgs/icon-cart-checked.png');
         }
@@ -305,8 +307,8 @@ export default {
             left: 0;
             width: 1226px;
             height: 0px;
-            opacity: 0;
             overflow: hidden;
+            background-color: #fff;
             //border-top: 1px solid #e5e5e5;
             box-shadow: 0px 7px 6px 0px rgba(0, 0, 0, 0.11);
             z-index: 10;
@@ -316,7 +318,6 @@ export default {
               float: left;
               width: 16.6%;
               height: 220px;
-              height: 200px;
               font-size: 12px;
               line-height: 12px;
               text-align: center;

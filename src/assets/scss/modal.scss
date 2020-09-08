@@ -1,0 +1,8 @@
+.modal {
+  @include position(fixed);
+  .mask{
+    @include position(fixed);
+    background-color: #000;
+    opacity: .5;
+  }
+}
