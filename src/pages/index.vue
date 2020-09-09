@@ -61,12 +61,12 @@
           v-for="(item, index) in adsList"
           :key="index"
         >
-          <img :src="item.img" alt="" />
+          <img v-lazy="item.img" alt="" />
         </a>
       </div>
       <div class="banner">
         <a href="/#/product/30">
-          <img src="/imgs/banner-1.png" alt="" />
+          <img v-lazy="'/imgs/banner-1.png'" alt="" />
         </a>
       </div>
     </div>
@@ -75,17 +75,17 @@
         <h2>手机</h2>
         <div class="wrapper">
           <div class="banner-left">
-            <a href=""><img src="/imgs/mix-alpha.jpg" alt=""/></a>
+            <a href=""><img v-lazy="'/imgs/mix-alpha.jpg'" alt="" /></a>
           </div>
           <div class="list-box">
             <div class="list" v-for="(arr, index) in phoneList" :key="index">
               <div class="item" v-for="(item, index1) in arr" :key="index1">
-                <span :class="[index1 % 2 == 0 ? 'new-pro' : 'kill-pro']"
-                  >新品</span
-                >
+                <span :class="[index1 % 2 == 0 ? 'new-pro' : 'kill-pro']">
+                  新品
+                </span>
 
                 <div class="item-img">
-                  <img :src="item.mainImage" />
+                  <img v-lazy="item.mainImage" />
                 </div>
                 <div class="item-info">
                   <h3>{{ item.name }}</h3>
@@ -101,10 +101,17 @@
       </div>
     </div>
     <service-bar></service-bar>
-    <modal title="提示" sureText="查看购物车" btnType="1" modalType="middle" :showModal="showModal">
-      
+    <modal
+      title="友情提示"
+      sureText="查看购物车"
+      btnType="3"
+      modalType="middle"
+      :showModal="showModal"
+      @submit="goToCart"
+      @cancel="showModal = false"
+    >
       <template v-slot:body>
-        <p>商品添加成功</p>
+        <p>商品添加成功！</p>
       </template>
     </modal>
   </div>
@@ -116,14 +123,12 @@ import Modal from '../components/Modal'
 import 'swiper/css/swiper.css'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 
-
 export default {
-  
   components: {
     ServiceBar,
     Swiper,
     SwiperSlide,
-    Modal
+    Modal,
   },
   data() {
     return {
@@ -213,6 +218,7 @@ export default {
         },
       ],
       phoneList: [[], []],
+      showModal: false,
     }
   },
 
@@ -234,6 +240,19 @@ export default {
           this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)]
         })
     },
+    goToCart() {
+      this.$router.push('/cart')
+    },
+    addCart() {
+      // this.axios.post('/carts',{
+      //   productId,
+      //   selected:true
+      // }).then(()=>{
+      //   
+      // })
+      
+      this.showModal=true;
+    }
   },
 }
 </script>
@@ -338,7 +357,7 @@ export default {
   }
   .product-box {
     background-color: $colorJ;
-    padding:0 0 50px;
+    padding: 0 0 50px;
     h2 {
       font-size: $fontF;
       height: 58px;
@@ -364,15 +383,15 @@ export default {
             margin-bottom: 0;
           }
           .item {
-            
             width: 236px;
             height: 302px;
             background-color: $colorG;
             text-align: center;
-            &:hover{
+            transition: transform 0.3s;
+            &:hover {
               z-index: 2;
-              box-shadow: 0 15px 30px rgba(0,0,0,.1);
-              transform: translate3d(0,-2px,0);
+              box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+              transform: translate3d(0, -2px, 0);
             }
             span {
               display: inline-block;

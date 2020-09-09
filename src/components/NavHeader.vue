@@ -12,9 +12,10 @@
           <a href="javascripte:;" v-if="username">{{ username }}</a>
           <a href="javascripte:;" v-if="!username" @click="login">登录</a>
           <a href="javascripte:;">退出</a>
-          <a href="javascripte:;" class="my-cart" @click="goToCart"
-            ><span class="icon-cart"></span>购物车</a
-          >
+          <a href="javascripte:;" class="my-cart" @click="goToCart">
+            <span class="icon-cart"></span>
+            购物车({{cartCount}})
+          </a>
         </div>
       </div>
     </div>
@@ -179,13 +180,24 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
 export default {
   name: 'nav-header',
   data() {
     return {
-      username: 'jack',
+      
       phoneList: [],
     }
+  },
+  computed:{
+    // username() {
+    //  return  this.$store.state.username;
+    // },
+    // cartCount(){
+    //   return this.$store.state.cartCount;
+    // }
+    // 展开运算符映射给mapStates
+    ...mapState(['username','cartCount']),
   },
   // 设置过滤器
   filters: {
@@ -198,24 +210,26 @@ export default {
     this.getProductList()
   },
   methods: {
-    login(){
-      this.$router.push('/login');
+    login() {
+      this.$router.push('/login')
     },
     getProductList() {
-      this.axios.get('/products', {
-        params: {
-          categoryId:'100012'
-        }
-      }).then((res) => {
-        if (res.list.length > 6) {
-          this.phoneList = res.list.slice(0, 6)
-          console.log(this.phoneList)
-        }
-      })
+      this.axios
+        .get('/products', {
+          params: {
+            categoryId: '100012',
+          },
+        })
+        .then((res) => {
+          if (res.list.length > 6) {
+            this.phoneList = res.list.slice(0, 6)
+            console.log(this.phoneList)
+          }
+        })
     },
     goToCart() {
-      this.$router.push('/cart');
-    }
+      this.$router.push('/cart')
+    },
   },
 }
 </script>
@@ -243,7 +257,7 @@ export default {
         text-align: center;
         margin-right: 0;
         color: #fff;
-        
+
         .icon-cart {
           @include bgImg(16px, 12px, '/imgs/icon-cart-checked.png');
         }

@@ -1,8 +1,49 @@
 .modal {
+  z-index: 10;
   @include position(fixed);
+  transition: all .5s;
   .mask{
     @include position(fixed);
     background-color: #000;
     opacity: .5;
+  }
+  // 过渡样式设计
+  &.slide-enter-active {
+    top:0;
+  }
+  &.slide-leave-active {
+    top:-100%;
+  }
+  &.slide-enter {
+    top:-100%;
+  }
+  .modal-dialog {
+    @include position(absolute,40%,50%,660px,auto);//模态框的高度自动填充，宽度一定
+    background-color: $colorG;
+    transform:translate(-50%,-50%);//实现水平居中
+    .modal-header {
+      height: 50px;
+      line-height: 50px;
+      background-color: $colorJ;
+      padding:0 25px;
+      font-size:$fontI;
+      .icon-close {
+        @include positionImg(absolute,23px,25px,14px,14px,'/imgs/icon-close.png');
+        // 鼠标移上变大5倍
+        &:hover{
+          transform:scale(1.5);
+        }
+      }
+    }
+    .modal-body{
+      padding: 42px 40px 54px;
+      font-size: $fontJ;
+    }
+    .modal-footer{
+      height: 80px;
+      line-height: 80px;
+      text-align: center;
+      
+    }
   }
 }
