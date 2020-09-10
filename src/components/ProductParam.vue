@@ -1,8 +1,8 @@
 <template>
-  <div class="nav-bar" :class="{ 'isFixed': isFixed }">
+  <div class="nav-bar" :class="{ isFixed: isFixed }">
     <div class="container">
       <div class="pro-title">
-        小米10
+        {{ title }}
       </div>
       <div class="pro-param">
         <a href="javascript:;">概述</a>
@@ -19,10 +19,12 @@
 <script>
 export default {
   name: 'nav-bar',
-
+  props: {
+    title: String,
+  },
   data() {
     return {
-      isFixed:false
+      isFixed: false,
     }
   },
   mounted() {
@@ -39,7 +41,7 @@ export default {
     },
   },
   destroyed() {
-    window.removeEventListener('scroll', this.initHeight, false)//false通过冒泡的方式，从内向外销毁，true代表捕获
+    window.removeEventListener('scroll', this.initHeight, false) //false通过冒泡的方式，从内向外销毁，true代表捕获
   },
 }
 </script>
@@ -55,11 +57,11 @@ export default {
   line-height: 70px;
   border-top: 1px solid $colorH;
   background-color: $colorG;
-  
+
   &.isFixed {
     position: fixed;
     top: 0;
-    width:100%;
+    width: 100%;
     box-shadow: 0 5px 5px $colorE;
   }
   .container {

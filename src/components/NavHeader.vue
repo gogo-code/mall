@@ -253,7 +253,7 @@ export default {
       }
       .my-cart {
         width: 110px;
-        background-color: #f60;
+        background-color: $colorA;
         text-align: center;
         margin-right: 0;
         color: #fff;
@@ -273,7 +273,7 @@ export default {
         display: inline-block;
         width: 55px;
         height: 55px;
-        background-color: #f60;
+        background-color:  $colorA;
         a {
           display: inline-block;
           width: 110px;

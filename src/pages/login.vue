@@ -7,9 +7,9 @@
       <div class="container">
         <div class="login-form">
           <h3>
-            <span class="checked">帐号登录</span>
+            <span class="checked">账号登录</span>
             <span class="sep-line">|</span>
-            <span>扫码登录</span>
+            <span>账号注册</span>
           </h3>
           <div class="input">
             <input type="text" placeholder="请输入账号" v-model="username" />
@@ -99,6 +99,7 @@ export default {
 
 <style scoped lang="scss">
 @import '../assets/scss/base';
+@import '../assets/scss/config';
 .login {
   & > .container {
     height: 113px;
@@ -127,7 +128,7 @@ export default {
           text-align: center;
           margin: 40px auto 49px;
           .checked {
-            color: #f60;
+            color:$colorA;
           }
           .sep-line {
             margin: 0 32px;
@@ -154,7 +155,7 @@ export default {
           font-size: 16px;
           text-align: center;
           color: #fff;
-          background-color: #f60;
+          background-color: $colorA;
         }
         .tips {
           margin-top: 14px;
@@ -163,7 +164,7 @@ export default {
           font-size: 14px;
           cursor: pointer;
           .sms {
-            color: #ff6600;
+            color: $colorA;
           }
           .reg {
             color: #999999;

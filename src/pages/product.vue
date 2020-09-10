@@ -10,7 +10,6 @@
     <div class="content">
       <div class="item-bg">
         <h2>{{ product.name }}</h2>
-
         <h3>{{ product.subtitle }}</h3>
         <p>
           <a href="" id="">全球首款双频 GP</a>
@@ -50,7 +49,7 @@
           <!-- Optional controls -->
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
-        <p class="desc">小米8 AI变焦双摄拍摄</p>
+        <p class="desc">{{ product.name }} AI变焦双摄拍摄</p>
       </div>
     </div>
   </div>

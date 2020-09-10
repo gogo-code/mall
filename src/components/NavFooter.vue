@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <div class="footer-logo">
-      <img src="/imgs/logo-footer.png" alt="" />
+      <img src="/imgs/mi-logo.png" alt="" />
       <p>乐享商城</p>
     </div>
     <div class="footer-link">
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'nav-footer',
   data() {
@@ -31,9 +32,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/scss/config.scss';
+
 .footer {
   height: 234px;
-  border-top: 4px solid #f60;
+  border-top: 4px solid  $colorA;
   background-color: #333;
   color: #999;
   font-size: 16px;
@@ -43,8 +46,10 @@ export default {
     margin-bottom: 31px;
     img {
       width: 53px;
-      height: 36px;
+      height: 46px;
       margin-bottom: 13px;
+      background-color: $colorA;
+      background-size: contain;
     }
   }
   .footer-link {
@@ -59,7 +64,7 @@ export default {
   }
   .copyright {
     .domain {
-      color: #f60;
+      color:  $colorA;
     }
   }
 }

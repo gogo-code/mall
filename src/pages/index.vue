@@ -243,13 +243,16 @@ export default {
     goToCart() {
       this.$router.push('/cart')
     },
-    addCart() {
-      // this.axios.post('/carts',{
-      //   productId,
-      //   selected:true
-      // }).then(()=>{
-      //   
-      // })
+    addCart(productId) {
+      this.axios.post('/carts',{
+        productId,
+        selected:true
+      }).then((res)=>{
+        this.showModal=true;
+          this.$store.dispatch('saveCartCount',res.cartTotalQuantity);
+      }).catch(()=>{
+        this.showModal=true;
+      })
       
       this.showModal=true;
     }
