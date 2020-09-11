@@ -90,7 +90,7 @@ export default {
           password,
         })
         .then(() => {
-          alert('注册成功')
+          this.$message.success('注册成功')
         })
     },
   },
@@ -128,7 +128,7 @@ export default {
           text-align: center;
           margin: 40px auto 49px;
           .checked {
-            color:$colorA;
+            color: $colorA;
           }
           .sep-line {
             margin: 0 32px;

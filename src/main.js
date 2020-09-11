@@ -6,6 +6,8 @@ import VueCookie from 'vue-cookie'
 import store from './store'
 import App from './App.vue'
 import router from './router'
+import { Message } from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
 axios.defaults.baseURL = '/api'
 axios.defaults.timeout = 8000
@@ -32,6 +34,7 @@ Vue.use(VueCookie)
 Vue.use(VueLazyLoad, {
   loading: '/imgs/loading-svg/loading-bars.svg',
 })
+Vue.prototype.$message = Message;
 Vue.config.productionTip = false
 
 new Vue({

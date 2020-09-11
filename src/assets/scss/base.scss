@@ -1,4 +1,5 @@
 @import "./mixin";
+@import "./config";
 .container {
   position: relative;
   width: 1226px;
@@ -31,4 +32,31 @@ input{
 }
 .clearfix:after{
   clear: both;
+}
+
+// 公共logo
+.header-logo {
+  display: inline-block;
+  width: 55px;
+  height: 55px;
+  background-color: $colorA;
+  a {
+    display: inline-block; // 不独占一行的块级元素
+    width: 55px;
+    height: 55px;
+    overflow: hidden; // 2张图片 隐藏另一张
+    &:before { // 伪类
+      content: ''; // 图片没有内容用空串占位
+      @include bgImg(55px, 55px, '/imgs/mi-logo.png');
+      transition: margin .2s; // 过渡效果
+    }
+    &:after { // 伪类
+      content: ''; // 图片没有内容用空串占位
+      @include bgImg(55px, 55px, '/imgs/mi-home.png');
+    }
+    &:hover:before { // 伪类 给before添加样式
+      margin-left: -55px;
+      transition: margin .2s; // 过渡效果
+    }
+  }
 }
