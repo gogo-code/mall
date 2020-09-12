@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from 'vuex';
 export default {
   name: 'login',
   data() {
@@ -64,37 +64,42 @@ export default {
       password: '',
       // 把用户id当为cookie传给服务端
       userId: '',
-    }
+    };
   },
   methods: {
     login() {
-      let { username, password } = this
+      let { username, password } = this;
       this.axios
         .post('/user/login', {
           username,
           password,
         })
         .then((res) => {
-          this.$cookie.set('userId', res.id, { expires: '1M' })
+          this.$cookie.set('userId', res.id, { expires: 'Session' });
           //this.$store.dispatch('saveUserName',res.username)
-          this.saveUserName(res.username)
-          this.$router.push('/index')
-        })
+          this.saveUserName(res.username);
+          this.$router.push({
+            name: 'index',
+            params: {
+              from: 'login',
+            },
+          });
+        });
     },
     ...mapActions(['saveUserName']),
     register() {
-      let { username, password } = this
+      let { username, password } = this;
       this.axios
         .post('/user/register', {
           username,
           password,
         })
         .then(() => {
-          this.$message.success('注册成功')
-        })
+          this.$message.success('注册成功');
+        });
     },
   },
-}
+};
 </script>
 
 <style scoped lang="scss">

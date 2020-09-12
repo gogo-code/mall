@@ -1,0 +1,30 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1599887609494'); /* IE9 */
+  src: url('iconfont.eot?t=1599887609494#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPUAAsAAAAACEAAAAOIAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDFAqEDIMvATYCJAMQCwoABCAFhG0HPRsOB8gekiREQFEUACggAvMUQTSWzt7dI6okClknBVVFoAh1jS0LybKuqkq0mo34/8urfjrNcIhaaWSmGn7pWjiz4sCnJa7gfXBb4WSdNr7/53J8dyU+v2W5zLE86gUYTaDAxl5EBYoN00sciEubCTQtWI06W1TRAHqF1ysQzyymXtDXVMpIdqgL1Z6JBeIlaNTTftUsgBfp7+M/xIUeJJUM3lbnHxRKkPNLeu2klf+KjqyAsp8BbBoZm0AhbvWabqLz0CZa06ymtg1UFSH9wq+d/2fsyUxV3JN9/z9ekokqeJltcAjDmV9SSCX4hakkfjnFHhAr3eto4D2Abwg/t3CoyHNIr+f5hX6GzRw9cOHAOVC1I4JynuVVhIMXKZofM3BhM0NN31naPHUrCDPSilVP3V7SOXs3tMLyFfsmAltj/pjHil97nNLw0sGLgTG+kwAEYwshtW2cn7Hzm0eTZknx644HVCZYfkIrGG5L5lZIT5DFkxpGp/zfsWzzRODDiwMrvxxYfm+00jRx8Lzid68hsfZY4pGwIGSBkFT6hPgItaGQ9PXoTJE49fXC1ymxaIZvtuSTFotTrx68mhIXJ4nDHhYaBi8MGoruNfQzgw8GGfS+9ALvw93nvUO9hTjR55rgw98XHDpcifOBxAsH73lzOcygMmhQDEzOvc5AztcpQTlAoGz4yRzee847cqsupmGSN2yN3NG4avVczfzTmqeroxqV5cuTYQdh+5eu5nqBm9c2P1f9ZpYP0ii1rFP9+a+dXP+5C3eLGb/07LOV/dix8R9yzgrMT1OXYOy/yJ5ZUCzXU5eieSHL2ag4RwMSmpr4e7kw9GIPyWR2JqFuUkJSMw9Z3SJS8JtQ0XIIVXXH0LSheHrLiIwWxQCs2w0g9F2FpOs7ZH1zSME/h4qpT1DVDxqarobvgi3LYWHyZdxLsIT6NiJLv8tpDLSEybLrsGmtvVeuclNCE5Y9Fi+KjYppRouxE8t7DPGsM8URYkRG2eVARWA7bLe7kFt2WXE/iTIT4k6Ljjb2vSmq3+UAxhkyrBeBSZA+GyEW/VycjHFpgml9vw5mspZdL3kkr6Ftgsk8LI0jsaLEzECKRc5Zee9yjcc6JnEIwggxkrk4IEXAgNn9kAvi7m9nhfUjophXBNzSRKNixrmiqPMljjdcB03eSSVUFE2pKQ3k25Kk7fWY+yxONZYsBAA=') format('woff2'),
+  url('iconfont.woff?t=1599887609494') format('woff'),
+  url('iconfont.ttf?t=1599887609494') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1599887609494#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+}
+
+.icon-add:before {
+  content: "";
+}
+
+.icon-ashbin:before {
+  content: "\e665";
+}
+
+.icon-edit:before {
+  content: "\e66e";
+}
+

@@ -9,25 +9,25 @@ export default {
   name: 'App',
   components: {},
   mounted() {
-    // 如果本地有缓存才获取相应值
+    // 未登录就不调用接口
     if (this.$cookie.get('userId')) {
-      this.getUser()
-      this.getCartCount()
+      this.getUser();
+      this.getCartCount();
     }
   },
   methods: {
     getUser() {
       this.axios.get('/user').then((res) => {
-        this.$store.dispatch('saveUserName', res.username)
-      })
+        this.$store.dispatch('saveUserName', res.username);
+      });
     },
     getCartCount() {
       this.axios.get('/carts/products/sum').then((res) => {
-        this.$store.dispatch('saveCartCount', res)
-      })
+        this.$store.dispatch('saveCartCount', res);
+      });
     },
   },
-}
+};
 </script>
 
 <style lang="scss">
