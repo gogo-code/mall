@@ -68,12 +68,12 @@ export default new Router({
           component: OrderConfirm,
         },
         {
-          path: '/pay',
+          path: 'pay',
           name: 'order-pay',
           component: OrderPay,
         },
         {
-          path:'/alipay',
+          path:'alipay',
           name:'alipay',
           component:AliPay
         }
