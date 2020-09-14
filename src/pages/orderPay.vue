@@ -3,18 +3,17 @@
     <div class="container">
       <div class="order-wrap">
         <div class="item-order">
-          <div class="item-order">
-            <div class="icon-succ"></div>
-            <div class="order-info">
-              <h2>订单提交成功，可以付款啦~</h2>
-              <p>
-                请在
-                <span>30分</span>
-                内完成支付，超时后将取消订单
-              </p>
-              <p>收货信息: {{ addressInfo }}</p>
-            </div>
+          <div class="icon-succ"></div>
+          <div class="order-info">
+            <h2>订单提交成功，可以付款啦~</h2>
+            <p>
+              请在
+              <span>30分</span>
+              内完成支付，超时后将取消订单
+            </p>
+            <p>收货信息: {{ addressInfo }}</p>
           </div>
+
           <div class="order-total">
             <p>
               应付总额:
@@ -23,8 +22,37 @@
             </p>
             <p>
               订单详情
-              <em class="icon-down"></em>
+              <em
+                class="icon-down"
+                :class="{ up: showDetail }"
+                @click="showDetail = !showDetail"
+              ></em>
             </p>
+          </div>
+        </div>
+        <div class="item-detail" v-if="showDetail">
+          <div class="item">
+            <div class="detail-title">订单号：</div>
+            <div class="detail-info theme-color">{{ orderId }}</div>
+          </div>
+          <div class="item">
+            <div class="detail-title">收货信息：</div>
+            <div class="detail-info">{{ addressInfo }}</div>
+          </div>
+          <div class="item good">
+            <div class="detail-title">商品名称：</div>
+            <div class="detail-info">
+              <ul>
+                <li v-for="(item, index) in orderDetail" :key="index">
+                  <img v-lazy="item.productImage" />
+                  {{ item.productName }}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="item">
+            <div class="detail-title">发票信息：</div>
+            <div class="detail-info">电子发票 个人</div>
           </div>
         </div>
       </div>
@@ -45,17 +73,37 @@
         </div>
       </div>
     </div>
+    <scan-pay-code
+      v-if="showPay"
+      @close="closePayModal"
+      :img="payImg"
+    ></scan-pay-code>
+    <modal
+      title="支付确认"
+      btnType="3"
+      :showModal="showPayModal"
+      sureText="查看订单"
+      cancelText="未支付"
+      @cancel="showPayModal = false"
+      @submit="goOrderList"
+    >
+      <template v-slot:body>
+        <p>您确认是否完成支付？</p>
+      </template>
+    </modal>
   </div>
 </template>
 
 <script>
 import QRCode from 'qrcode';
+import ScanPayCode from '../components/ScanPayCode';
+ import Modal from '../components/Modal'
 export default {
   data() {
     return {
       orderId: this.$route.query.orderNo, //订单编号
       addressInfo: '', //收货人地址
-      orederDetail: [], //订单详情，包含商品列表
+      orderDetail: [], //订单详情，包含商品列表
       showDetail: false, //是否显示订单详情
       payType: '', //支付类型
       showPay: false, //是否显示微信支付弹框
@@ -65,7 +113,10 @@ export default {
       T: '', //定时器
     };
   },
-  components: {},
+  components: {
+    ScanPayCode,
+    Modal
+  },
   mounted() {
     this.getOrderDetail();
   },
@@ -75,7 +126,7 @@ export default {
         let item = res.shippingVo;
         console.log(item);
         this.addressInfo = `${item.receiverName} ${item.receiverMobile} ${item.receiverProvince} ${item.receiverCity} ${item.receiverDistrict} ${item.receiverAddress}`;
-        this.orederDetail = res.orderItemVoList;
+        this.orderDetail = res.orderItemVoList;
         this.payment = res.payment;
       });
     },
@@ -113,6 +164,23 @@ export default {
           }
         });
       }, 1000);
+    },
+    // 关闭微信弹框
+    closePayModal() {
+      this.showPay = false;
+      this.showPayModal = true;
+      clearInterval(this.T);
+    },
+    goOrderList() {
+        this.axios.get('/orders',{
+                    params:{
+                        pageSize:10,
+                        pageNum:1
+                    }
+                }).then(()=>{
+                      this.$router.push('/order/list');
+                });
+    
     },
   },
 };
@@ -172,6 +240,30 @@ export default {
           margin-left: 9px;
           transition: all 0.5s;
           cursor: pointer;
+          &.up {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+    .item-detail {
+      border-top: 1px solid #d7d7d7;
+      padding-top: 47px;
+      padding-left: 130px;
+      font-size: 14px;
+      margin-top: 45px;
+      .item {
+        margin-bottom: 19px;
+        .detail-title {
+          float: left;
+          width: 100px;
+        }
+        .detail-info {
+          display: inline-block;
+          img {
+            width: 30px;
+            vertical-align: middle;
+          }
         }
       }
     }
