@@ -1,83 +1,71 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './pages/home'
-import Index from './pages/index'
-import Detail from './pages/detail'
-import Product from './pages/product'
-import Cart from './pages/cart'
-import Order from './pages/order'
-import OrderConfirm from './pages/orderConfirm'
-import OrderList from './pages/orderList'
-import OrderPay from './pages/orderPay'
-import AliPay from './pages/aliPay'
-import Login from './pages/login'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
+import Home from './pages/home';
 
-Vue.use(Router)
-export default new Router({
+Vue.use(VueRouter);
+
+export default new VueRouter({
   routes: [
     {
       path: '/',
       name: 'home',
-      redirect: '/index',
       component: Home,
-
+      redirect: '/index', // 重定向到index 多个页面会用到home的nav组件 多个页面会显示在home的router-view中 所以放在home的children中
       children: [
         {
           path: 'index',
           name: 'index',
-          component: Index,
+          component: () => import('@/pages/index'),
         },
         {
-          path: 'product/:id',
+          path: 'product/:id', // 动态路由
           name: 'product',
-          component: Product,
+          component: () => import('./pages/product.vue'),
         },
         {
-          path: 'detail/:id',
+          path: 'detail/:id', // 动态路由
           name: 'detail',
-          component: Detail,
+          component: () => import('./pages/detail.vue'),
         },
-       
       ],
     },
     {
       path: '/login',
       name: 'login',
-      component: Login,
+      component: () => import('./pages/login.vue'),
     },
-
     {
       path: '/cart',
       name: 'cart',
-      component: Cart,
+      component: () => import('./pages/cart.vue'),
     },
     {
       path: '/order',
       name: 'order',
-      component: Order,
+      component: () => import('./pages/order.vue'),
       children: [
         {
           path: 'list',
           name: 'order-list',
-          component: OrderList,
+          component: () => import('./pages/orderList.vue'),
         },
         {
           path: 'confirm',
           name: 'order-confirm',
-          component: OrderConfirm,
+          component: () => import('./pages/orderConfirm.vue'),
         },
         {
           path: 'pay',
           name: 'order-pay',
-          component: OrderPay,
+          component: () => import('./pages/orderPay.vue'),
         },
         {
-          path:'alipay',
-          name:'alipay',
-          component:AliPay
-        }
+          path: 'alipay',
+          name: 'alipay',
+          component: () => import('./pages/aliPay.vue'),
+        },
       ],
     },
   ],
-})
+});

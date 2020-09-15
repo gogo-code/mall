@@ -3,8 +3,10 @@
     <div class="wrapper">
       <div class="container">
         <div class="order-box">
+          <!-- 加载条 -->
           <loading v-if="loading"></loading>
           <div class="order" v-for="(order, index) in list" :key="index">
+            <!-- 订单标题 -->
             <div class="order-title">
               <div class="item-info fl">
                 {{ order.createTime }}
@@ -21,6 +23,7 @@
                 <span>元</span>
               </div>
             </div>
+            <!-- 订单内容 -->
             <div class="order-content clearfix">
               <div class="good-box fl">
                 <div
@@ -49,6 +52,7 @@
               </div>
             </div>
           </div>
+          <!-- 分页器 -->
           <el-pagination
             v-if="true"
             class="pagination"
@@ -66,9 +70,9 @@
           <div
             class="scroll-more"
             v-infinite-scroll="scrollMore"
-            infinite-scroll-disabled="true"
-            infinite-scroll-distance="410"
-            v-if="false"
+            infinite-scroll-disabled="busy"
+            infinite-scroll-distance="410"  
+            v-if="false" 
           >
             <img
               src="/imgs/loading-svg/loading-spinning-bubbles.svg"
@@ -83,7 +87,6 @@
   </div>
 </template>
 <script>
-
 import Loading from './../components/Loading';
 import NoData from './../components/NoData';
 import { Pagination, Button } from 'element-ui';
@@ -103,9 +106,9 @@ export default {
     return {
       loading: false,
       list: [],
-      pageSize: 10,
-      pageNum: 1,
-      total: 0,
+      pageSize: 10, //单页条数
+      pageNum: 1, //页号
+      total: 0, //总条数
       showNextPage: true, //加载更多：是否显示按钮
       busy: false, //滚动加载，是否触发
     };
@@ -120,13 +123,14 @@ export default {
       this.axios
         .get('/orders', {
           params: {
-            pageSize: 10,
+            pageSize: 5,
             pageNum: this.pageNum,
           },
         })
         .then((res) => {
           this.loading = false;
-          this.list = this.list.concat(res.list);
+          //this.list = this.list.concat(res.list);  //合并数组,用于加载更多
+            this.list = res.list;
           this.total = res.total;
           this.showNextPage = res.hasNextPage;
           this.busy = false;
@@ -152,6 +156,7 @@ export default {
     loadMore() {
       this.pageNum++;
       this.getOrderList();
+      
     },
     // 第三种方法：滚动加载，通过npm插件实现
     scrollMore() {
@@ -161,7 +166,7 @@ export default {
         this.getList();
       }, 500);
     },
-    // 专门给scrollMore使用
+    // 给scrollMore使用
     getList() {
       this.loading = true;
       this.axios
@@ -184,9 +189,10 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 @import '../assets/scss/config.scss';
 @import '../assets/scss/mixin.scss';
+@import '../assets/scss/base.scss';
 .order-list {
   .wrapper {
     background-color: $colorJ;
@@ -250,9 +256,10 @@ export default {
         text-align: center;
       }
       .el-pagination.is-background .el-pager li:not(.disabled).active {
-        background-color: $colorA;
+        background-color: $colorA ;
         color: #fff;
       }
+      
       .el-button--primary {
         background-color: $colorA;
         border-color: $colorA;

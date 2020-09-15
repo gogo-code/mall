@@ -13,8 +13,10 @@ module.exports = {
     },
   },
   lintOnSave: false, // 关闭EsLint校验
-  // productionSourceMap: true,
-  // chainWebpack: (config) => {
-  //   config.plugins.delete('prefetch')
-  // },
+  //加快打包构建
+  productionSourceMap: true,
+  // 删除文件预加载
+  chainWebpack: (config) => {
+    config.plugins.delete('prefetch')
+  },
 }
