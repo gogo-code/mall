@@ -114,29 +114,33 @@
             />
           </div>
           <div class="item">
+            <span>省份</span>
             <select name="province" v-model="checkedItem.receiverProvince">
               <option value="北京">北京</option>
               <option value="天津">天津</option>
               <option value="河北">河北</option>
             </select>
-            <select name="city" v-model="checkedItem.receiverCity">
+            <span>城市</span>
+            <select name="city" v-model="checkedItem.receiverCity" >
               <option value="北京">北京</option>
               <option value="天津">天津</option>
-              <option value="河北">石家庄</option>
+              <option value="石家庄">石家庄</option>
             </select>
+            <span>区域</span>
             <select name="district" v-model="checkedItem.receiverDistrict">
-              <option value="北京">昌平区</option>
-              <option value="天津">海淀区</option>
-              <option value="河北">东城区</option>
-              <option value="天津">西城区</option>
-              <option value="河北">顺义区</option>
-              <option value="天津">房山区</option>
+              <option value="昌平区">昌平区</option>
+              <option value="海淀区">海淀区</option>
+              <option value="东城区">东城区</option>
+              <option value="西城区">西城区</option>
+              <option value="顺义区">顺义区</option>
+              <option value="房山区">房山区</option>
             </select>
           </div>
           <div class="item">
             <textarea
               name="street"
               v-model="checkedItem.receiverAddress"
+              placeholder="详细地址"
             ></textarea>
           </div>
           <div class="item">
@@ -174,7 +178,7 @@ export default {
       cartList: [], //购物车中需要结算的商品列表
       cartTotalPrice: 0, //商品总金额
       count: 0, //商品结算数量
-      checkedItem: {}, //选中的地址对象
+      checkedItem: {},//选中的对象
       userAction: '', //用户行为 0：新增 1：编辑 2：删除
       showDelModal: false, //是否显示删除弹框
       showModal: false, //是否显示新增或者编辑弹框
