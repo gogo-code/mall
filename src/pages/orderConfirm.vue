@@ -5,7 +5,13 @@
         <div class="item-address">
           <h2 class="addr-title">收货地址</h2>
           <div class="addr-list clearfix">
-            <div class="addr-info" :class="{'checked':index==checkIndex}"  @click="checkIndex=index"  v-for="(item, index) in list" :key="index">
+            <div
+              class="addr-info"
+              :class="{ checked: index == checkIndex }"
+              @click="checkIndex = index"
+              v-for="(item, index) in list"
+              :key="index"
+            >
               <h2>{{ item.receiverName }}</h2>
               <div class="phone">{{ item.receiverMobile }}</div>
               <div class="street">
@@ -114,27 +120,7 @@
             />
           </div>
           <div class="item">
-            <span>省份</span>
-            <select name="province" v-model="checkedItem.receiverProvince">
-              <option value="北京">北京</option>
-              <option value="天津">天津</option>
-              <option value="河北">河北</option>
-            </select>
-            <span>城市</span>
-            <select name="city" v-model="checkedItem.receiverCity" >
-              <option value="北京">北京</option>
-              <option value="天津">天津</option>
-              <option value="石家庄">石家庄</option>
-            </select>
-            <span>区域</span>
-            <select name="district" v-model="checkedItem.receiverDistrict">
-              <option value="昌平区">昌平区</option>
-              <option value="海淀区">海淀区</option>
-              <option value="东城区">东城区</option>
-              <option value="西城区">西城区</option>
-              <option value="顺义区">顺义区</option>
-              <option value="房山区">房山区</option>
-            </select>
+            <choose-city ref="ChooseCity"></choose-city>
           </div>
           <div class="item">
             <textarea
@@ -169,6 +155,7 @@
 </template>
 <script>
 import Modal from './../components/Modal';
+import ChooseCity from './../components/ChooseCity/chooseCity';
 export default {
   name: 'order-confirm',
   data() {
@@ -178,7 +165,7 @@ export default {
       cartList: [], //购物车中需要结算的商品列表
       cartTotalPrice: 0, //商品总金额
       count: 0, //商品结算数量
-      checkedItem: {},//选中的对象
+      checkedItem: {}, //选中的商品对象
       userAction: '', //用户行为 0：新增 1：编辑 2：删除
       showDelModal: false, //是否显示删除弹框
       showModal: false, //是否显示新增或者编辑弹框
@@ -188,6 +175,7 @@ export default {
 
   components: {
     Modal,
+    ChooseCity,
   },
   mounted() {
     this.getAddressList();
@@ -199,19 +187,26 @@ export default {
         this.list = res.list;
       });
     },
-    // 打开新增地址弹框
+    // 新增地址弹框
     openAddressModal() {
       this.userAction = 0;
       this.checkedItem = {};
       this.title = '新增收货地址';
       this.showModal = true;
     },
+    // 编辑地址弹框
     editAddressModal(item) {
       this.userAction = 1;
       this.checkedItem = item;
       this.title = '编辑收货地址';
       this.showModal = true;
+      this.$refs.ChooseCity.setdefault(
+        item.receiverProvince,
+        item.receiverCity,
+        item.receiverDistrict
+      );
     },
+    //删除地址弹框
     delAddress(item) {
       this.checkedItem = item;
       this.userAction = 2;
@@ -232,13 +227,15 @@ export default {
       }
       if (userAction == 0 || userAction == 1) {
         let {
-          receiverName,
-          receiverMobile,
-          receiverProvince,
-          receiverCity,
-          receiverDistrict,
-          receiverAddress,
-          receiverZip,
+          receiverName=checkedItem.receiverName,
+          receiverMobile=checkedItem.receiverMobile,
+
+          receiverProvince=this.$refs.ChooseCity.prov,
+          receiverCity=this.$refs.ChooseCity.city,
+          receiverDistrict= this.$refs.ChooseCity.district,
+
+          receiverAddress= checkedItem.receiverAddress,
+          receiverZip= checkedItem.receiverZip
         } = checkedItem;
         let errMsg = '';
         if (!receiverName) {
@@ -272,6 +269,7 @@ export default {
 
       this.axios[method](url, params).then(() => {
         this.closeModal();
+        // 更新地址
         this.getAddressList();
         this.$message.success('操作成功');
       });
@@ -280,7 +278,8 @@ export default {
       this.axios.get('/carts').then((res) => {
         let list = res.cartProductVoList; //获取购物车中所有商品数据
         this.cartTotalPrice = res.cartTotalPrice; //商品总金额
-        this.cartList = list.filter((item) => item.productSelected);
+        this.cartList = list.filter((item) => item.productSelected);//获取被选中的商品列表
+        //获取商品总数
         this.cartList.map((item) => {
           this.count += item.quantity;
         });
@@ -297,15 +296,18 @@ export default {
     // 订单提交即订单创建
     orderSubmit() {
       let item = this.list[this.checkIndex];
+      // 地址没选中或者地址不存在
       if (!item) {
         this.$message.error('请选择一个收货地址');
         return;
       }
+      //调用提交订单接口
       this.axios
         .post('/orders', {
           shippingId: item.id,
         })
         .then((res) => {
+          // 跳转到订单结算
           this.$router.push({
             path: '/order/pay',
             query: {
