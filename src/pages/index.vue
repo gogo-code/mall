@@ -2,6 +2,7 @@
   <div class="index">
     <div class="container">
       <div class="swiper-box">
+        <!-- 导航菜单 -->
         <div class="nav-menu">
           <ul class="menu-wrap">
             <li class="menu-item">
@@ -44,17 +45,19 @@
           </ul>
         </div>
         <swiper ref="mySwiper" :options="swiperOption">
+          <!-- slides -->
           <swiper-slide v-for="(item, index) in slideList" :key="index">
             <a :href="'/#/product/' + item.id">
               <img :src="item.img" alt="" />
             </a>
           </swiper-slide>
+          <!-- Optional controls -->
           <div class="swiper-pagination" slot="pagination"></div>
           <div class="swiper-button-prev" slot="button-prev"></div>
           <div class="swiper-button-next" slot="button-next"></div>
         </swiper>
       </div>
-
+      <!-- 广告栏 -->
       <div class="ads-box">
         <a
           :href="'/#/product/' + item.id"
@@ -70,6 +73,7 @@
         </a>
       </div>
     </div>
+    <!-- 产品栏 -->
     <div class="product-box">
       <div class="container">
         <h2>手机</h2>
@@ -110,6 +114,7 @@
       @submit="goToCart"
       @cancel="showModal = false"
     >
+    <!-- 给插槽传值 -->
       <template v-slot:body>
         <p>商品添加成功！</p>
       </template>
@@ -148,6 +153,7 @@ export default {
           prevEl: '.swiper-button-prev',
         },
       },
+      // 轮播数据
       slideList: [
         {
           id: '42',
@@ -170,6 +176,7 @@ export default {
           img: '/imgs/slider/slide-5.jpg',
         },
       ],
+      //菜单数据
       menuList: [
         [
           {
@@ -199,6 +206,7 @@ export default {
         [0, 0, 0, 0],
         [0, 0, 0, 0],
       ],
+      //广告数据
       adsList: [
         {
           id: 33,
