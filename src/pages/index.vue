@@ -79,13 +79,13 @@
         <h2>手机</h2>
         <div class="wrapper">
           <div class="banner-left">
-            <a href=""><img v-lazy="'/imgs/mix-alpha.jpg'" alt="" /></a>
+            <a href="javascript:;"><img v-lazy="'/imgs/mix-alpha.jpg'" alt="" /></a>
           </div>
           <div class="list-box">
             <div class="list" v-for="(arr, index) in phoneList" :key="index">
               <div class="item" v-for="(item, index1) in arr" :key="index1">
                 <span :class="[index1 % 2 == 0 ? 'new-pro' : 'kill-pro']">
-                  新品
+                  {{ index1 % 2 == 0 ? newItem : killItem }}
                 </span>
 
                 <div class="item-img">
@@ -232,6 +232,8 @@ export default {
       ],
       phoneList: [[], []],
       showModal: false,
+      newItem: '新品',
+      killItem: '精品',
     };
   },
 

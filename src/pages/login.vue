@@ -1,15 +1,28 @@
 <template>
   <div class="login">
-    <div class="container">
-      <a href="/#/index"><img src="/imgs/login-logo.png" alt="" /></a>
+    <div class="container ">
+      <div class="logo">
+        <a href="/#/index">
+          <img src="/imgs/mi-logo.png" alt="" />
+        </a>
+      </div>
+
+      <div class="title">
+        <h2>乐享商城</h2>
+        <span>让每个人都能享受科技的乐趣</span>
+      </div>
     </div>
     <div class="wrapper">
       <div class="container">
         <div class="login-form">
           <h3>
-            <span :class={checked:islogin} @click="islogin=true">账号登录</span>
+            <span :class="{ checked: islogin }" @click="islogin = true">
+              账号登录
+            </span>
             <span class="sep-line">|</span>
-            <span :class={checked:!islogin} @click="islogin=false">账号注册</span>
+            <span :class="{ checked: !islogin }" @click="islogin = false">
+              账号注册
+            </span>
           </h3>
           <div class="input">
             <input type="text" placeholder="请输入账号" v-model="username" />
@@ -22,10 +35,11 @@
             />
           </div>
           <div class="btn-box">
-            <a href="javascript:;" class="btn" @click="login" v-if="islogin">登录</a>
+            <a href="javascript:;" class="btn" @click="login" v-if="islogin">
+              登录
+            </a>
             <a href="javascript:;" class="btn" @click="register" v-else>注册</a>
           </div>
-          
         </div>
       </div>
     </div>
@@ -58,7 +72,7 @@ export default {
       password: '',
       // 把用户id当为cookie传给服务端
       userId: '',
-      islogin:true
+      islogin: true,
     };
   },
   methods: {
@@ -81,7 +95,7 @@ export default {
           });
         });
     },
-    
+
     ...mapActions(['saveUserName']),
     register() {
       let { username, password } = this;
@@ -103,10 +117,36 @@ export default {
 @import '../assets/scss/config';
 .login {
   & > .container {
-    height: 113px;
-    img {
-      width: auto;
-      height: 100%;
+    display: flex;
+    height: 105px;
+    text-align: center;
+    .logo {
+      padding: 25px 0;
+      a {
+        display: inline-block;
+        background-color: $colorA;
+
+        img {
+          width: 55px;
+          height: 55px;
+        }
+      }
+    }
+    .title {
+      padding: 26px 0;
+      margin-left: 20px;
+      h2 {
+        font-size: 28px;
+        letter-spacing: 10px;
+        text-indent: 22px;
+        color: #333;
+      }
+      span {
+        margin-left: 17px;
+        font-size: 14px;
+        font-weight: 200;
+        color: #999;
+      }
     }
   }
   .wrapper {
@@ -128,8 +168,8 @@ export default {
           font-size: 24px;
           text-align: center;
           margin: 40px auto 49px;
-          span{
-              cursor: pointer;
+          span {
+            cursor: pointer;
           }
           .checked {
             color: $colorA;
@@ -161,8 +201,6 @@ export default {
           color: #fff;
           background-color: $colorA;
         }
-        
-        
       }
     }
   }

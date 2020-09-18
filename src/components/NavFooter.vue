@@ -5,13 +5,13 @@
       <p>乐享商城</p>
     </div>
     <div class="footer-link">
-      <a href="">主页</a>
+      <a href="javascript:;">主页</a>
       <span>|</span>
-      <a href="">感谢支持</a>
+      <a href="javascript:;">感谢支持</a>
       <span>|</span>
-      <a href="">关于我们</a>
+      <a href="javascript:;">关于我们</a>
       <span>|</span>
-      <a href="">支持我们</a>
+      <a href="javascript:;">支持我们</a>
     </div>
     <div class="copyright">
       Copyright ©2020
