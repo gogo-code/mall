@@ -52,6 +52,7 @@
         <p class="desc">{{ product.name }} AI变焦双摄拍摄</p>
       </div>
     </div>
+    <back-top></back-top>
   </div>
 </template>
 
@@ -61,6 +62,8 @@ import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 
 import ProductParam from './../components/ProductParam'
+import BackTop from './../components/BackTop'
+
 export default {
   name: 'product',
   data() {
@@ -83,6 +86,8 @@ export default {
     Swiper,
     SwiperSlide,
     ProductParam,
+    BackTop
+
   },
   mounted() {
     this.getProductInfo()

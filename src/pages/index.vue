@@ -104,6 +104,7 @@
         </div>
       </div>
     </div>
+
     <service-bar></service-bar>
     <modal
       title="友情提示"
@@ -114,19 +115,22 @@
       @submit="goToCart"
       @cancel="showModal = false"
     >
-    <!-- 给插槽传值 -->
+      <!-- 给插槽传值 -->
       <template v-slot:body>
         <p>商品添加成功！</p>
       </template>
     </modal>
+    <back-top></back-top>
   </div>
 </template>
 
 <script>
-import ServiceBar from '../components/ServiceBar'
-import Modal from '../components/Modal'
-import 'swiper/css/swiper.css'
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import ServiceBar from '../components/ServiceBar';
+import Modal from '../components/Modal';
+import BackTop from '../components/BackTop';
+
+import 'swiper/css/swiper.css';
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
 
 export default {
   components: {
@@ -134,6 +138,7 @@ export default {
     Swiper,
     SwiperSlide,
     Modal,
+    BackTop,
   },
   data() {
     return {
@@ -227,11 +232,11 @@ export default {
       ],
       phoneList: [[], []],
       showModal: false,
-    }
+    };
   },
 
   mounted() {
-    this.init()
+    this.init();
   },
   methods: {
     init() {
@@ -244,28 +249,31 @@ export default {
         })
         .then((res) => {
           // 截取4个作为一个数组
-          res.list = res.list.slice(6, 14)
-          this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)]
-        })
+          res.list = res.list.slice(6, 14);
+          this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)];
+        });
     },
     goToCart() {
-      this.$router.push('/cart')
+      this.$router.push('/cart');
     },
     addCart(productId) {
-      this.axios.post('/carts',{
-        productId,
-        selected:true
-      }).then((res)=>{
-        this.showModal=true;
-          this.$store.dispatch('saveCartCount',res.cartTotalQuantity);
-      }).catch(()=>{
-        this.showModal=true;
-      })
-      
-      this.showModal=true;
-    }
+      this.axios
+        .post('/carts', {
+          productId,
+          selected: true,
+        })
+        .then((res) => {
+          this.showModal = true;
+          this.$store.dispatch('saveCartCount', res.cartTotalQuantity);
+        })
+        .catch(() => {
+          this.showModal = true;
+        });
+
+      this.showModal = true;
+    },
   },
-}
+};
 </script>
 
 <style scoped lang="scss">

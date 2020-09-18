@@ -93,10 +93,12 @@
 </template>
 
 <script>
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-import 'swiper/css/swiper.css'
 import ProductParam from './../components/ProductParam'
 import ServiceBar from './../components/ServiceBar'
+
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
+
 export default {
   data() {
     return {

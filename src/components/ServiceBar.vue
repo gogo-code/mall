@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="service">
     <div class="container">
       <ul>
