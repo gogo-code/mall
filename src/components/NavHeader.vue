@@ -248,7 +248,9 @@ export default {
     logout() {
       this.axios.post('/user/logout').then(() => {
         this.$message.success('退出成功');
+        //清空cookie
         this.$cookie.set('userId', '', { expires: '-1' });
+        //清空登录信息和购物车信息
         this.$store.dispatch('saveUserName', '');
         this.$store.dispatch('saveCartCount', '0');
       });

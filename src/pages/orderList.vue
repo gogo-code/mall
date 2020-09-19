@@ -1,5 +1,10 @@
 <template>
   <div class="order-list">
+    <order-header title="订单列表">
+      <template v-slot:tip>
+        <span>请谨防钓鱼链接或诈骗电话，了解更多></span>
+      </template>
+    </order-header>
     <div class="wrapper">
       <div class="container">
         <div class="order-box">
@@ -89,13 +94,16 @@
 <script>
 import Loading from './../components/Loading';
 import NoData from './../components/NoData';
+import OrderHeader from './../components/OrderHeader'
 import { Pagination, Button } from 'element-ui';
 import infiniteScroll from 'vue-infinite-scroll';
+
 export default {
   name: 'order-list',
   components: {
     Loading,
     NoData,
+    OrderHeader,
     [Pagination.name]: Pagination,
     [Button.name]: Button,
   },

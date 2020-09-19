@@ -16,7 +16,7 @@ export default new VueRouter({
         {
           path: 'index',
           name: 'index',
-          component: () => import('@/pages/index'),
+          component: () => import('./pages/index'),
         },
         {
           path: 'product/:id', // 动态路由

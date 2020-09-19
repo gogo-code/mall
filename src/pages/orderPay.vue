@@ -1,5 +1,11 @@
 <template>
   <div class="order-pay">
+    <order-header title="订单支付">
+      <template v-slot:tip>
+        <span>请谨防钓鱼链接或诈骗电话，了解更多</span>
+      </template>
+    </order-header>
+    <div class="wrapper">
     <div class="container">
       <div class="order-wrap">
         <div class="item-order">
@@ -73,6 +79,7 @@
         </div>
       </div>
     </div>
+    </div>
     <scan-pay-code
       v-if="showPay"
       @close="closePayModal"
@@ -97,7 +104,8 @@
 <script>
 import QRCode from 'qrcode';
 import ScanPayCode from '../components/ScanPayCode';
- import Modal from '../components/Modal'
+import Modal from '../components/Modal';
+import OrderHeader from './../components/OrderHeader';
 export default {
   data() {
     return {
@@ -115,7 +123,8 @@ export default {
   },
   components: {
     ScanPayCode,
-    Modal
+    Modal,
+    OrderHeader,
   },
   mounted() {
     this.getOrderDetail();
@@ -172,15 +181,16 @@ export default {
       clearInterval(this.T);
     },
     goOrderList() {
-        this.axios.get('/orders',{
-                    params:{
-                        pageSize:10,
-                        pageNum:1
-                    }
-                }).then(()=>{
-                      this.$router.push('/order/list');
-                });
-    
+      this.axios
+        .get('/orders', {
+          params: {
+            pageSize: 10,
+            pageNum: 1,
+          },
+        })
+        .then(() => {
+          this.$router.push('/order/list');
+        });
     },
   },
 };
@@ -190,115 +200,117 @@ export default {
 @import '../assets/scss/base';
 
 .order-pay {
-  background-color: #f5f5f5;
-  padding-top: 30px;
-  padding-bottom: 61px;
-  .order-wrap {
-    padding: 62px 50px;
-    background-color: #fff;
-    font-size: 14px;
-    margin-bottom: 30px;
-    .item-order {
-      display: flex;
-      align-items: center;
-      .icon-succ {
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-        background: url('/imgs/icon-gou.png') #80c58a no-repeat center;
-        background-size: 60px;
-        margin-right: 40px;
-      }
-      .order-info {
-        margin-right: 248px;
-        h2 {
-          font-size: 24px;
-          color: #333;
-          margin-bottom: 20px;
+  .wrapper {
+    background-color: #f5f5f5;
+    padding-top: 30px;
+    padding-bottom: 61px;
+    .order-wrap {
+      padding: 62px 50px;
+      background-color: #fff;
+      font-size: 14px;
+      margin-bottom: 30px;
+      .item-order {
+        display: flex;
+        align-items: center;
+        .icon-succ {
+          width: 90px;
+          height: 90px;
+          border-radius: 50%;
+          background: url('/imgs/icon-gou.png') #80c58a no-repeat center;
+          background-size: 60px;
+          margin-right: 40px;
         }
-        p {
-          color: #666;
+        .order-info {
+          margin-right: 248px;
+          h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+          }
+          p {
+            color: #666;
+            span {
+              color: $colorA;
+            }
+          }
+        }
+        .order-total {
+          & > p:first-child {
+            margin-bottom: 30px;
+          }
           span {
+            font-size: 28px;
             color: $colorA;
           }
+          .icon-down {
+            display: inline-block;
+            width: 14px;
+            height: 10px;
+            background: url('/imgs/icon-down.png') no-repeat center;
+            background-size: contain;
+            margin-left: 9px;
+            transition: all 0.5s;
+            cursor: pointer;
+            &.up {
+              transform: rotate(180deg);
+            }
+          }
         }
       }
-      .order-total {
-        & > p:first-child {
-          margin-bottom: 30px;
+      .item-detail {
+        border-top: 1px solid #d7d7d7;
+        padding-top: 47px;
+        padding-left: 130px;
+        font-size: 14px;
+        margin-top: 45px;
+        .item {
+          margin-bottom: 19px;
+          .detail-title {
+            float: left;
+            width: 100px;
+          }
+          .detail-info {
+            display: inline-block;
+            img {
+              width: 30px;
+              vertical-align: middle;
+            }
+          }
         }
-        span {
-          font-size: 28px;
-          color: $colorA;
-        }
-        .icon-down {
+      }
+    }
+    .item-pay {
+      padding: 26px 50px 72px;
+      background-color: #fff;
+      h3 {
+        font-size: 20px;
+        font-weight: 200;
+        color: #333;
+        padding-bottom: 24px;
+        border-bottom: 1px solid #d7d7d7;
+        margin-bottom: 26px;
+      }
+      p {
+        font-size: 18px;
+      }
+      .pay-way {
+        .pay {
           display: inline-block;
-          width: 14px;
-          height: 10px;
-          background: url('/imgs/icon-down.png') no-repeat center;
-          background-size: contain;
-          margin-left: 9px;
-          transition: all 0.5s;
+          width: 188px;
+          height: 64px;
+          border: 1px solid #d7d7d7;
           cursor: pointer;
-          &.up {
-            transform: rotate(180deg);
-          }
+          margin-top: 19px;
         }
-      }
-    }
-    .item-detail {
-      border-top: 1px solid #d7d7d7;
-      padding-top: 47px;
-      padding-left: 130px;
-      font-size: 14px;
-      margin-top: 45px;
-      .item {
-        margin-bottom: 19px;
-        .detail-title {
-          float: left;
-          width: 100px;
+        .pay-ali {
+          background: url('/imgs/pay/icon-ali.png') no-repeat center;
+          background-size: 103px 38px;
         }
-        .detail-info {
-          display: inline-block;
-          img {
-            width: 30px;
-            vertical-align: middle;
-          }
+        .pay-wechat {
+          background: url('/imgs/pay/icon-wechat.png') no-repeat center;
+          background-size: 103px 38px;
+          margin-left: 20px;
         }
-      }
-    }
-  }
-  .item-pay {
-    padding: 26px 50px 72px;
-    background-color: #fff;
-    h3 {
-      font-size: 20px;
-      font-weight: 200;
-      color: #333;
-      padding-bottom: 24px;
-      border-bottom: 1px solid #d7d7d7;
-      margin-bottom: 26px;
-    }
-    p {
-      font-size: 18px;
-    }
-    .pay-way {
-      .pay {
-        display: inline-block;
-        width: 188px;
-        height: 64px;
-        border: 1px solid #d7d7d7;
-        cursor: pointer;
-        margin-top: 19px;
-      }
-      .pay-ali {
-        background: url('/imgs/pay/icon-ali.png') no-repeat center;
-        background-size: 103px 38px;
-      }
-      .pay-wechat {
-        background: url('/imgs/pay/icon-wechat.png') no-repeat center;
-        background-size: 103px 38px;
-        margin-left: 20px;
       }
     }
   }

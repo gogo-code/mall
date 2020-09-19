@@ -269,10 +269,10 @@ export default {
           this.$store.dispatch('saveCartCount', res.cartTotalQuantity);
         })
         .catch(() => {
-          this.showModal = true;
+          alert('请先登录！')
         });
 
-      this.showModal = true;
+      
     },
   },
 };

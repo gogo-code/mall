@@ -13,24 +13,30 @@ import './assets/font/iconfont.css'
 
 axios.defaults.baseURL = '/api';
 axios.defaults.timeout = 8000;
-//接口信息拦截
+//接口响应信息拦截
 axios.interceptors.response.use(function(response) {
   let res = response.data;
   let path = location.hash;
+  // 登录成功返回数据
   if (res.status === 0) {
     return res.data;
-  } else if (res.status === 10) {
+  } 
+  //未登录强制跳到登录页返回异常
+  else if (res.status === 10) {
     // 允许用户不经过登录进入首页
     if (path != '#/index') {
       window.location.href = '/#/login';
     }
-
     return Promise.reject(res);
-  } else {
+  } 
+  // 其他状态码报错
+  else {
     Message.error(res.msg);
     return Promise.reject(res);
   }
-},(error) => {
+},
+//接收信息报错
+(error) => {
   let res = error.response;
   Message.error(res.data.message);
   return Promise.reject(error);
@@ -40,6 +46,7 @@ Vue.use(VueCookie);
 Vue.use(VueLazyLoad, {
   loading: '/imgs/loading-svg/loading-bars.svg',
 });
+
 Vue.prototype.$message = Message;
 Vue.config.productionTip = false;
 

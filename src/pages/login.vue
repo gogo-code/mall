@@ -45,13 +45,13 @@
     </div>
     <div class="footer">
       <div class="footer-link">
-        <a href="">简体</a>
+        <a href="javascript:;">简体</a>
         <span>|</span>
-        <a href="">繁体</a>
+        <a href="javascript:;">繁体</a>
         <span>|</span>
-        <a href="">English</a>
+        <a href="javascript:;">English</a>
         <span>|</span>
-        <a href="">常见问题</a>
+        <a href="javascript:;">常见问题</a>
       </div>
       <div class="copyright">
         Copyright ©2020
