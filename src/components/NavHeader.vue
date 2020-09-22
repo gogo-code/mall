@@ -232,7 +232,7 @@ export default {
         .then((res) => {
           if (res.list.length > 6) {
             this.phoneList = res.list.slice(0, 6);
-            console.log(this.phoneList);
+            //console.log(this.phoneList);
           }
         });
     },
@@ -341,7 +341,7 @@ export default {
             }
           }
           .children {
-            position: absolute;
+            position: absolute;//相对于container
             top: 112px;
             left: 0;
             width: 1226px;
@@ -382,7 +382,7 @@ export default {
               }
               &:before {
                 content: '';
-                position: absolute;
+                position: absolute;//相对于product
                 top: 28px;
                 right: 0;
                 border-left: 1px solid $colorF;

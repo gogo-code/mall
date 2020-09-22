@@ -102,6 +102,8 @@ export default {
     getCartList() {
       this.axios.get('/carts').then((res) => {
         this.renderData(res)
+      }).catch(()=>{
+        this.$message.warning('您还未登录！')
       })
     },
     //公共赋值
@@ -118,6 +120,7 @@ export default {
       if (type == '-') {
         if (quantity == 1) {
           this.$message.warning('商品至少保留一件!')
+          //防止继续执行
           return
         }
         --quantity
@@ -153,6 +156,7 @@ export default {
     },
     // 购物车下单
     order() {
+      //every返回boolean，只要所有都符合条件就返回true，否则返回false
       let isCheck = this.list.every((item) => !item.productSelected)
       if (isCheck) {
         this.$message.warning('请选择一件商品')

@@ -137,6 +137,7 @@ export default {
           selected: true,
         })
         .then((res = { cartProductVoList: 0 }) => {
+          //根据返回值同步更新购物车数量
           this.$store.dispatch('saveCartCount', res.cartTotalQuantity)
           // this.$router.push('/cart');
         }).catch(()=>{

@@ -28,7 +28,7 @@
                 <span>元</span>
               </div>
             </div>
-            <!-- 订单内容 -->
+            <!-- 订单内容 二层循环-->
             <div class="order-content clearfix">
               <div class="good-box fl">
                 <div

@@ -173,7 +173,7 @@ export default {
       cartList: [], //购物车中需要结算的商品列表
       cartTotalPrice: 0, //商品总金额
       count: 0, //商品结算数量
-      checkedItem: {}, //选中的商品对象
+      checkedItem: {}, //选中的对象
       userAction: '', //用户行为 0：新增 1：编辑 2：删除
       showDelModal: false, //是否显示删除弹框
       showModal: false, //是否显示新增或者编辑弹框
@@ -194,6 +194,18 @@ export default {
     getAddressList() {
       this.axios.get('/shippings').then((res) => {
         this.list = res.list;
+      });
+    },
+      getCartList() {
+      this.axios.get('/carts').then((res) => {
+        let list = res.cartProductVoList; //获取购物车中所有商品数据
+        this.cartTotalPrice = res.cartTotalPrice; //商品总金额
+        this.cartList = list.filter((item) => item.productSelected); //获取被选中的商品列表
+        //获取商品总数
+        // this.cart=list.filter((item) => item.productSelected).length;
+        this.cartList.map((item) => {
+          this.count += item.quantity;
+        });
       });
     },
     // 新增地址弹框
@@ -220,6 +232,13 @@ export default {
       this.checkedItem = item;
       this.userAction = 2;
       this.showDelModal = true;
+    },
+     // 关闭模态框
+    closeModal() {
+      this.checkedItem = {};
+      this.userAction = '';
+      this.showDelModal = false;
+      this.showModal = false;
     },
     // 地址删除、编辑、新增功能
     submitAddress() {
@@ -283,25 +302,9 @@ export default {
         this.$message.success('操作成功');
       });
     },
-    getCartList() {
-      this.axios.get('/carts').then((res) => {
-        let list = res.cartProductVoList; //获取购物车中所有商品数据
-        this.cartTotalPrice = res.cartTotalPrice; //商品总金额
-        this.cartList = list.filter((item) => item.productSelected); //获取被选中的商品列表
-        //获取商品总数
-        this.cartList.map((item) => {
-          this.count += item.quantity;
-        });
-      });
-    },
+    
 
-    // 关闭模态框
-    closeModal() {
-      this.checkedItem = {};
-      this.userAction = '';
-      this.showDelModal = false;
-      this.showModal = false;
-    },
+    
     // 订单提交即订单创建
     orderSubmit() {
       let item = this.list[this.checkIndex];
