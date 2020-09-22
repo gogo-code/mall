@@ -190,6 +190,7 @@ npm run build			//打包项目
    对公共方法的提取减少了代码的冗余
 
 
+<br>
 
 ## 项目遇到的bug
 
@@ -225,6 +226,7 @@ npm run build			//打包项目
    原因是store里的数据是保存在运行内存中的,当页面刷新时，页面会重新加载vue实例，store里面的数据就会被重新赋值初始化,解决办法在app.vue中调用接口获取值保存到vuex中，调用前提是有相应的cookie，根据cookie来调用接口，如果不这么做，直接初始化方法就会连续调用两次sum接口，造成资源请求的浪费
 
 
+<br>
 
 ## 项目中运用的数组位置和方法
 
@@ -239,6 +241,7 @@ npm run build			//打包项目
 **orderList.vue 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	concat()加载更多将商品数组进行连接**
 
 
+<br>
 
 ## 有待优化
 
@@ -254,7 +257,7 @@ npm run build			//打包项目
 
 等等
 
-
+<br>
 
 ## 本人文笔很差，之后如果觉得可以做得更好，会不定时更新...
 
