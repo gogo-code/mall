@@ -62,7 +62,8 @@ import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 
 import ProductParam from './../components/ProductParam'
-import BackTop from './../components/BackTop'
+import BackTop from '../components/BackTop/BackTop';
+
 
 export default {
   name: 'product',

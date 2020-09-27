@@ -10,7 +10,7 @@
               <div class="children">
                 <ul v-for="(menu, index) in menuList" :key="index">
                   <li v-for="(item, index1) in menu" :key="index1">
-                    <a :href="item ? '/#/product/' + item.id : ''">
+                    <a :href="item ? '/#/product/' + item.id : 'javascript:;'">
                       <img
                         :src="item ? item.img : '/imgs/item-box-1.png'"
                         alt=""
@@ -47,7 +47,7 @@
         <swiper ref="mySwiper" :options="swiperOption">
           <!-- slides -->
           <swiper-slide v-for="(item, index) in slideList" :key="index">
-            <a :href="'/#/product/' + item.id">
+            <a :href="item ? '/#/product/' + item.id : 'javascript:;'">
               <img :src="item.img" alt="" />
             </a>
           </swiper-slide>
@@ -127,7 +127,7 @@
 <script>
 import ServiceBar from '../components/ServiceBar';
 import Modal from '../components/Modal';
-import BackTop from '../components/BackTop';
+import BackTop from '../components/BackTop/BackTop';
 
 import 'swiper/css/swiper.css';
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper';

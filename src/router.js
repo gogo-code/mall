@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Home from './pages/home';
+import Home from './pages/home.vue';
 
 Vue.use(VueRouter);
 
@@ -16,7 +16,7 @@ export default new VueRouter({
         {
           path: 'index',
           name: 'index',
-          component: () => import('./pages/index'),
+          component: () => import('./pages/index.vue'),
         },
         {
           path: 'product/:id', // 动态路由

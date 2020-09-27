@@ -1,6 +1,6 @@
 <template>
-  <div class="back-top" :class="{ isShow: isShow }">
-    <a href="#">
+  <div class="back-top" :class="{ isShow: isShow }" @click="goTop">
+    <a href="javascript:;">
       <div class="icon"><img src="/imgs/totop.png" alt="" /></div>
       <span>回顶部</span>
     </a>
@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import animate from "./animate";
 export default {
   data() {
     return {
@@ -26,6 +27,9 @@ export default {
         document.body.scrollTop;
       this.isShow = scrollTop > 900 ? true : false;
     },
+    goTop(){
+      animate(window, 0);
+    }
   },
   destroyed() {
     window.removeEventListener('scroll', this.initHeight, false); //false通过冒泡的方式，从内向外销毁，true代表捕获
@@ -34,7 +38,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/config.scss';
+@import '../../assets/scss/config.scss';
 .back-top {
   display: none;
 

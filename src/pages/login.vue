@@ -16,7 +16,7 @@
       <div class="container">
         <div class="login-form">
           <h3>
-            <span :class="{ checked: islogin }" @click="islogin = true">
+            <span :class="{ checked: islogin }" @click="islogin = true" >
               账号登录
             </span>
             <span class="sep-line">|</span>
@@ -32,10 +32,11 @@
               type="password"
               placeholder="请输入密码"
               v-model="password"
+              @keyup.enter="login"
             />
           </div>
           <div class="btn-box">
-            <a href="javascript:;" class="btn" @click="login" v-if="islogin">
+            <a href="javascript:;" class="btn" @click="login" v-if="islogin" >
               登录
             </a>
             <a href="javascript:;" class="btn" @click="register" v-else>注册</a>
