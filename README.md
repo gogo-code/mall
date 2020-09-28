@@ -257,6 +257,43 @@ npm run build			//打包项目
 
 **orderList.vue 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	concat()加载更多将商品数组进行连接**
 
+<br>
+
+## 项目中使用到的CSS3新特性
+transition:图标，商品放上去等过渡效果
+
+box-shadow:导航栏、商品鼠标放上去，参数组件固定后的效果
+
+transform:模态框关闭的放大效果，实现居中，商品鼠标放上存在位移
+
+last-child:清除末尾元素的样式，比如按钮组合，导航栏的伪元素，首页商品分类末尾的底部外边距，订单列表的末尾底部外边距
+
+<br>
+
+## 项目中使用到的es6知识
+模块化
+
+promise
+
+模板字符串
+
+解构赋值
+
+let const
+
+展开运算符
+
+箭头函数
+
+加强版对象字面量
+
+
+<br>
+
+## 项目中使用到的一些很重要的样式
+
+
+
 
 <br>
 
