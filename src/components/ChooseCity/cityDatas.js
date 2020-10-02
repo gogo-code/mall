@@ -6,7 +6,6 @@ export var arrAll = [
         name: '请选择',
       },
     ],
-    type: 1,
   },
 
   {
@@ -80,10 +79,8 @@ export var arrAll = [
             name: '其他',
           },
         ],
-        type: 0,
       },
     ],
-    type: 1,
   },
   {
     name: '湖北',
@@ -141,7 +138,6 @@ export var arrAll = [
             name: '其他',
           },
         ],
-        type: 0,
       },
       {
         name: '黄石',
@@ -171,7 +167,6 @@ export var arrAll = [
             name: '其他',
           },
         ],
-        type: 0,
       },
       {
         name: '十堰',
@@ -207,7 +202,6 @@ export var arrAll = [
             name: '其他',
           },
         ],
-        type: 0,
       },
       {
         name: '荆州',
@@ -243,7 +237,6 @@ export var arrAll = [
             name: '其他',
           },
         ],
-        type: 0,
       },
       {
         name: '宜昌',
@@ -284,12 +277,11 @@ export var arrAll = [
           {
             name: '兴山县',
           },
-        
+
           {
             name: '其他',
           },
         ],
-        type: 0,
       },
       {
         name: '襄樊',
@@ -328,7 +320,6 @@ export var arrAll = [
             name: '其他',
           },
         ],
-        type: 0,
       },
       {
         name: '鄂州',
@@ -349,7 +340,6 @@ export var arrAll = [
             name: '其他',
           },
         ],
-        type: 0,
       },
       {
         name: '荆门',
@@ -376,7 +366,6 @@ export var arrAll = [
             name: '其他',
           },
         ],
-        type: 0,
       },
       {
         name: '孝感',
@@ -409,7 +398,6 @@ export var arrAll = [
             name: '其他',
           },
         ],
-        type: 0,
       },
       {
         name: '黄冈',
@@ -451,7 +439,6 @@ export var arrAll = [
             name: '其他',
           },
         ],
-        type: 0,
       },
       {
         name: '咸宁',
@@ -481,7 +468,6 @@ export var arrAll = [
             name: '其他',
           },
         ],
-        type: 0,
       },
       {
         name: '随州',
@@ -499,34 +485,27 @@ export var arrAll = [
             name: '其他',
           },
         ],
-        type: 0,
       },
-     
-     
+
       {
         name: '仙桃',
         sub: [],
-        type: 0,
       },
       {
         name: '天门',
         sub: [],
-        type: 0,
       },
       {
         name: '潜江',
         sub: [],
-        type: 0,
       },
       {
         name: '神农架林区',
         sub: [],
-        type: 0,
       },
       {
         name: '其他',
       },
     ],
-    type: 1,
   },
 ];

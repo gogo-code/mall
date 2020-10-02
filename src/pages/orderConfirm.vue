@@ -221,11 +221,7 @@ export default {
       this.checkedItem = item;
       this.title = '编辑收货地址';
       this.showModal = true;
-      this.$refs.ChooseCity.setdefault(
-        item.receiverProvince,
-        item.receiverCity,
-        item.receiverDistrict
-      );
+      this.$refs.ChooseCity.setdefault('选择省份', '请选择', '');
     },
     //删除地址弹框
     delAddress(item) {
@@ -284,7 +280,7 @@ export default {
           this.$message.error(errMsg);
           return;
         }
-          params = {
+        params = {
           receiverName: checkedItem.receiverName,
           receiverMobile: checkedItem.receiverMobile,
 
@@ -293,7 +289,7 @@ export default {
           receiverDistrict: this.$refs.ChooseCity.district,
 
           receiverAddress: checkedItem.receiverAddress,
-          receiverZip: checkedItem.receiverZip
+          receiverZip: checkedItem.receiverZip,
         };
       }
 
