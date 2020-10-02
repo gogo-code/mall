@@ -31,7 +31,7 @@ export default {
       animate(window, 0);
     }
   },
-  destroyed() {
+  beforeDestroy() {
     window.removeEventListener('scroll', this.initHeight, false); //false通过冒泡的方式，从内向外销毁，true代表捕获
   },
 };

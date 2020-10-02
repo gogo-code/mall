@@ -196,7 +196,7 @@ export default {
         this.list = res.list;
       });
     },
-      getCartList() {
+    getCartList() {
       this.axios.get('/carts').then((res) => {
         let list = res.cartProductVoList; //获取购物车中所有商品数据
         this.cartTotalPrice = res.cartTotalPrice; //商品总金额
@@ -233,7 +233,7 @@ export default {
       this.userAction = 2;
       this.showDelModal = true;
     },
-     // 关闭模态框
+    // 关闭模态框
     closeModal() {
       this.checkedItem = {};
       this.userAction = '';
@@ -242,7 +242,8 @@ export default {
     },
     // 地址删除、编辑、新增功能
     submitAddress() {
-      let { checkedItem, userAction } = this;
+      let checkedItem = this.checkedItem;
+      let userAction = this.userAction;
       let method,
         url,
         params = {};
@@ -283,15 +284,16 @@ export default {
           this.$message.error(errMsg);
           return;
         }
-        params = {
-          // 下面的参数都是es6简写，全写为receiverName=checkedItem.receiverName
-          receiverName,
-          receiverMobile,
-          receiverProvince,
-          receiverCity,
-          receiverDistrict,
-          receiverAddress,
-          receiverZip,
+          params = {
+          receiverName: checkedItem.receiverName,
+          receiverMobile: checkedItem.receiverMobile,
+
+          receiverProvince: this.$refs.ChooseCity.prov,
+          receiverCity: this.$refs.ChooseCity.city,
+          receiverDistrict: this.$refs.ChooseCity.district,
+
+          receiverAddress: checkedItem.receiverAddress,
+          receiverZip: checkedItem.receiverZip
         };
       }
 
@@ -302,9 +304,7 @@ export default {
         this.$message.success('操作成功');
       });
     },
-    
 
-    
     // 订单提交即订单创建
     orderSubmit() {
       let item = this.list[this.checkIndex];
@@ -319,7 +319,7 @@ export default {
           shippingId: item.id,
         })
         .then((res) => {
-            this.$store.dispatch('saveCartCount',0);
+          this.$store.dispatch('saveCartCount', 0);
           // 跳转到订单结算
           this.$router.push({
             path: '/order/pay',

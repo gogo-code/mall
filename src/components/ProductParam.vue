@@ -40,7 +40,7 @@ export default {
       this.isFixed = scrollTop > 152 ? true : false
     },
   },
-  destroyed() {
+  beforeDestroy() {
     window.removeEventListener('scroll', this.initHeight, false) //false通过冒泡的方式，从内向外销毁，true代表捕获
   },
 }

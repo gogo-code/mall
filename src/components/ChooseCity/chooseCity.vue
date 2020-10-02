@@ -25,7 +25,7 @@ export default {
 
   data() {
     return {
-      arr: arrAll,
+      arr: arrAll, //引入数据
       prov: "北京",
       city: "北京",
       district: "东城区",
@@ -37,9 +37,9 @@ export default {
     this.setdefault();
   },
   methods: {
-    updateCity: function() {
-      for (var i in this.arr) {
-        var obj = this.arr[i];
+    updateCity() {
+      for (let i in this.arr) {
+        let obj = this.arr[i];
         if (obj.name == this.prov) {
           this.cityArr = obj.sub;
           break;
@@ -47,9 +47,9 @@ export default {
       }
       this.city = this.cityArr[1].name;
     },
-    updateDistrict: function() {
-      for (var i in this.cityArr) {
-        var obj = this.cityArr[i];
+    updateDistrict() {
+      for (let i in this.cityArr) {
+        let  obj = this.cityArr[i];
         if (obj.name == this.city) {
           this.districtArr = obj.sub;
           break;
@@ -65,23 +65,23 @@ export default {
         this.district = "";
       }
     },
-    setdefault: function(prov, city, dist) {
+    setdefault(prov, city, dist) {
       this.prov = prov;
       this.city = city;
       this.district = dist;
     },
-    setstatic_dist: function() {}
+    
   },
-  beforeMount: function() {
+  beforeMount() {
     this.updateCity();
     this.updateDistrict();
   },
   watch: {
-    prov: function() {
+    prov() {
       this.updateCity();
-      // this.updateDistrict();
+      
     },
-    city: function() {
+    city() {
       this.updateDistrict();
     }
   }
