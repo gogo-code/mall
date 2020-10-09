@@ -176,7 +176,9 @@ npm run build			//打包项目
 
 ## 新增内容
 
-回顶部组件
+#### 回顶部组件
+实现过程
+
 <br>
 省市三级联动(有小bug)
 
@@ -234,6 +236,8 @@ npm run build			//打包项目
 <br>
 上面的bug是我在项目中遇到的较大bug，下面是我的一点思考:
 
+<br>
+
 
 **1. 为什么从vuex中读取的值需要在computed中获取，而不是在data中获取**
 
@@ -253,7 +257,7 @@ npm run build			//打包项目
 
 **cart.vue 	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 		every()购物车下单根据商品数组没有一个选中返回Boolean**
 
-**orderConfirm.vue 	&nbsp;&nbsp;&nbsp;&nbsp;	map()将商品数组的数量相加**
+**orderConfirm.vue 	&nbsp;&nbsp;&nbsp;&nbsp;	map()遍历商品数组将单个商品数量相加**
 
 **orderList.vue 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	concat()加载更多将商品数组进行连接**
 
@@ -264,7 +268,7 @@ transition:图标，商品放上去等过渡效果
 
 box-shadow:导航栏、商品鼠标放上去，参数组件固定后的效果
 
-transform:模态框关闭的放大效果，实现居中，商品鼠标放上存在位移
+transform:模态框关闭的放大效果，订单详情的旋转，实现居中，商品鼠标放上存在位移
 
 last-child:清除末尾元素的样式，比如按钮组合，导航栏的伪元素，首页商品分类末尾的底部外边距，订单列表的末尾底部外边距
 
