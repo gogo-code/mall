@@ -22,7 +22,7 @@ axios.interceptors.response.use(function(response) {
     return res.data;
   } 
   //未登录强制跳到登录页返回异常
-  else if (res.status === 10) {
+  else if (res.status=== 10) {
     // 允许用户不经过登录进入首页
     if (path != '#/index') {
       window.location.href = '/#/login';
